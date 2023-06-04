@@ -13,7 +13,7 @@ export class CustomEmailvalidation implements ValidatorConstraintInterface {
 
   async validate(value: string): Promise<boolean> {
     return this.prisma.user
-      .findMany({ where: { email: value } })
+      .findFirst({ where: { email: value } })
       .then((user) => {
         if (user) return false;
         return true;
