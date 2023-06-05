@@ -6,7 +6,7 @@ import {
   ValidatorConstraintInterface,
 } from 'class-validator';
 
-@ValidatorConstraint({ name: 'emailId', async: true })
+@ValidatorConstraint({ name: 'email', async: true })
 @Injectable()
 export class CustomEmailvalidation implements ValidatorConstraintInterface {
   constructor(private readonly prisma: PrismaService) {}
