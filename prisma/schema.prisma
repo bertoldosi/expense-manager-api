@@ -17,32 +17,33 @@ model User {
 }
 
 model Expense {
-  id        String  @id @default(uuid())
-  name      String
-  User      User?   @relation(fields: [userEmail], references: [email])
-  userEmail String?
+  id          String        @id @default(uuid())
+  name        String
+  User        User?         @relation(fields: [userEmail], references: [email])
+  userEmail   String?
+  Institution Institution[]
 
   @@map("expenses")
 }
 
-// model Institution {
-//   id        String     @id @default(uuid())
-//   name      String
-//   amount    String?
-//   shoppings Shopping[]
-//   Expense   Expense?   @relation(fields: [expenseId], references: [id])
-//   expenseId String?
+model Institution {
+  id        String     @id @default(uuid())
+  name      String
+  amount    String?
+  shoppings Shopping[]
+  Expense   Expense?   @relation(fields: [expenseId], references: [id])
+  expenseId String?
 
-//   @@map("institutions")
-// }
+  @@map("institutions")
+}
 
-// model Shopping {
-//   id            String       @id @default(uuid())
-//   description   String
-//   responsible   String
-//   amount        String       @default(dbgenerated("0"))
-//   Institution   Institution? @relation(fields: [institutionId], references: [id])
-//   institutionId String?
+model Shopping {
+  id            String       @id @default(uuid())
+  description   String
+  responsible   String
+  amount        String       @default(dbgenerated("0"))
+  Institution   Institution? @relation(fields: [institutionId], references: [id])
+  institutionId String?
 
-//   @@map("shoppings")
-// }
+  @@map("shoppings")
+}
