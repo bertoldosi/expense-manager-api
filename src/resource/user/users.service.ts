@@ -7,7 +7,18 @@ export class UsersService {
   constructor(private prisma: PrismaService) {}
 
   async create(createUserDto: CreateUserDto) {
-    return await this.prisma.user.create({ data: createUserDto });
+    return await this.prisma.user.create({
+      data: {
+        name: createUserDto.name,
+        email: createUserDto.email,
+        expenses: {
+          create: createUserDto.expenses,
+        },
+      },
+      include: {
+        expenses: true,
+      },
+    });
   }
 
   async findAll() {

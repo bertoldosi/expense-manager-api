@@ -8,4 +8,6 @@ export class CreateUserDto {
   @IsEmail()
   @Validate(CustomEmailvalidation)
   email: string;
+
+  expenses?: any;
 }
