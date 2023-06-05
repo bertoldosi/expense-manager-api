@@ -25,12 +25,14 @@ export class UsersService {
     return await this.prisma.user.findMany();
   }
 
-  async findOne(id: string) {
-    return await this.prisma.user.findFirst({
+  async findOne(email: string) {
+    const response = await this.prisma.user.findFirst({
       where: {
-        id,
+        email,
       },
     });
+
+    return response;
   }
 
   async remove(id: string) {
